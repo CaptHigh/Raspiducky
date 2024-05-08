@@ -2,20 +2,20 @@ from distutils.core import setup
 
 setup(
     # Application name:
-    name="raspiducky",
+    name="device",
 
     # Version number (initial):
     version="0.1.0",
 
     # Application author details:
-    author="Juan Ezquerro LLanes",
-    author_email="arrase@gmail.com",
+    author="Kali",
+    author_email="horse",
 
     # Packages
     packages=["RaspiDucky"],
 
     # Details
-    url="https://github.com/arrase/Raspiducky",
+    url="",
 
     description="A Keyboard emulator like Rubber Ducky build over Raspberry Pi Zero W",
 
