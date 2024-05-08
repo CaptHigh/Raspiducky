@@ -9,7 +9,7 @@ CONFIG_DISK_SIZE=10000 # 10MB
 
 # DEPENDENCIES
 sudo apt update
-sudo apt install python-bluez
+sudo apt install python3-bluez
 
 # EXEC FILES
 sudo gcc hid-gadget-test.c -o $BIN_DIR/hid-gadget
