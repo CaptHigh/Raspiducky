@@ -1,7 +1,8 @@
+import sys
+import struct
 from bluetooth import *
 
 from RaspiDucky.Configuration import Config
-
 
 class RFCommClient:
     _config = None
@@ -11,7 +12,7 @@ class RFCommClient:
 
     def run(self, payload, address=None):
         if address is None:
-            print("No device specified.  Searching all nearby bluetooth devices")
+            print("No device specified. Searching all nearby bluetooth devices")
 
         service_matches = find_service(uuid=self._config.get_uuid(), address=address)
 
@@ -30,9 +31,9 @@ class RFCommClient:
         sock = BluetoothSocket(RFCOMM)
         sock.connect((host, port))
 
-        with open(payload) as f:
+        with open(payload, 'rb') as f:
             for line in f:
-                data = line.replace('\n', '').replace('\r', '')
+                data = line.replace(b'\n', b'').replace(b'\r', b'')
                 data_size = len(data)
                 if data_size > 0:
                     sock.send(struct.pack('!I', data_size))
