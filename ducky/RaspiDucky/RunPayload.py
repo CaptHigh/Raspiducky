@@ -1,7 +1,6 @@
 from RaspiDucky.DuckyScript import DuckyScript
 from RaspiDucky.RFCommClient import RFCommClient
 
-
 class RunPayload:
     _script = None
     _client = None
@@ -12,7 +11,7 @@ class RunPayload:
             self._client.run(payload=payload, address=address)
         else:
             self._script = DuckyScript()
-            with open(payload) as f:
+            with open(payload, 'r') as f:
                 for line in f:
                     cmd = line.replace('\n', '').replace('\r', '').split(' ', 1)
                     self._script.run(cmd)
