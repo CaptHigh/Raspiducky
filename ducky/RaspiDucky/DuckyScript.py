@@ -6,7 +6,6 @@ sys.path.append('/etc/raspiducky/keyboard_layouts')
 
 import current as kb
 
-
 class DuckyScript:
     _def_delay = 0
     _hid_dev = "/dev/hidg0"
@@ -26,6 +25,7 @@ class DuckyScript:
     def _exec_code(self, code, code_type="keyboard"):
         p1 = subprocess.Popen(["echo", code], stdout=subprocess.PIPE)
         p2 = subprocess.Popen([self._hid_bin, self._hid_dev, code_type], stdin=p1.stdout, stdout=subprocess.PIPE)
+        p1.stdout.close()  # close the p1.stdout pipe
         p2.communicate()
 
     def _parse_cmd(self, cmd):
@@ -48,8 +48,6 @@ class DuckyScript:
             return "up"
         elif cmd[0] in ["BREAK", "PAUSE"]:
             return "pause"
-        elif cmd[0] in ["ESC", "ESCAPE"]:
-            return "escape"
         elif (cmd[0] == "PRINTSCREEN"):
             return "print"
         else:
@@ -97,7 +95,7 @@ class DuckyScript:
             self._exec_code(self._last_cmd)
         elif (cmd[0] == "REPEAT"):
             if self._last_cmd not in ["UNS", "REM", ""]:
-                for time in xrange(int(cmd[1])):
+                for time in range(int(cmd[1])):
                     if (self._last_cmd == "STRING"):
                         for c in self._last_string:
                             self._exec_code(self._getKBCode(c))
