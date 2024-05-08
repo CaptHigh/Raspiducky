@@ -53,5 +53,5 @@ grep "/usr/bin/run_payload.sh" /etc/rc.local || (awk '/exit\ 0/ && c == 0 {c = 0
 # INSTALL RASPIDUCKY
 cd ducky
 [ -d /usr/local/lib/python3.11/dist-packages/RaspiDucky/ ] && sudo rm -rd /usr/local/lib/python3.11/dist-packages/RaspiDucky/*
-sudo python setup.py install
+sudo python setup.py build
 
