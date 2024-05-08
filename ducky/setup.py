@@ -5,7 +5,7 @@ setup(
     name="device",
 
     # Version number (initial):
-    version="0.1.0",
+    version="0.1.311",
 
     # Application author details:
     author="Kali",
