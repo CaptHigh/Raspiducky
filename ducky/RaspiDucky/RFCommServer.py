@@ -1,8 +1,8 @@
+import struct
 from bluetooth import *
 
 from RaspiDucky.Configuration import Config
 from RaspiDucky.DuckyScript import DuckyScript
-
 
 class RFCommServer:
     _server_sock = None
@@ -31,7 +31,7 @@ class RFCommServer:
                 lengthbuf = self._client_sock.recv(4)
                 length, = struct.unpack('!I', lengthbuf)
                 data = self._client_sock.recv(length)
-                self._ducky.run(data.split(' ', 1))
+                self._ducky.run(data.decode().split(' ', 1))
         except IOError:
             pass
 
