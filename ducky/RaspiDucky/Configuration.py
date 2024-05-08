@@ -1,4 +1,4 @@
-import ConfigParser
+import configparser
 from sys import exit
 
 
@@ -8,12 +8,11 @@ class Config:
 
     def __init__(self):
         try:
-            config = ConfigParser.ConfigParser()
-            config.readfp(open(self._config_file))
+            config = configparser.ConfigParser()
+            config.read(self._config_file)
             self._uuid = config.get('service', 'uuid')
-        except ConfigParser.NoOptionError:
-            print
-            "Error reading config file."
+        except configparser.NoOptionError:
+            print("Error reading config file.")
             exit(2)
 
     def get_uuid(self):
